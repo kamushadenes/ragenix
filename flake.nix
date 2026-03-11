@@ -363,12 +363,8 @@
       # SYSTEM-INDEPENDENT OUTPUTS
       #
       {
-        # Passthrough the agenix NixOS and Darwin modules
-        inherit (agenix) nixosModules darwinModules;
-
-        # Use patched home-manager module that fixes stale generation crash loop
-        homeManagerModules.default = import ./modules/age-home.nix;
-        homeManagerModules.age = import ./modules/age-home.nix;
+        # Passthrough the agenix NixOS, Darwin and Home Manager modules
+        inherit (agenix) nixosModules darwinModules homeManagerModules;
 
         # Overlay to add ragenix and replace agenix
         overlays.default = _final: prev: rec {
